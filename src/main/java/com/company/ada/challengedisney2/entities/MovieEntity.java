@@ -1,12 +1,16 @@
 package com.company.ada.challengedisney2.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "movies")
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MovieEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -22,8 +26,14 @@ public class MovieEntity {
     @ManyToMany(mappedBy = "movies", fetch = FetchType.LAZY)
     private List<GenreEntity> genres;
 
+
     public MovieEntity() { }
 
+    public MovieEntity(String image_url, String titulo, Integer year) {
+        this.image_url = image_url;
+        this.titulo = titulo;
+        this.year = year;
+    }
 
     public Integer getIdmovie() {
         return idmovie;

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Map;
 
@@ -23,8 +22,16 @@ public class MovieController {
     }
 
     @GetMapping
-    private List<MovieEntity> listarAllP(){
+    private List<MovieEntity> listAllMovie(){
         return movieService.listarTodosPelis();
+    }
+
+    @GetMapping("/lista")
+    private List<Map<String, String>> listFilms(){return movieService.listarPelis();}
+
+    @GetMapping("/test")
+    private List<MovieEntity> listTest(){
+        return movieService.listTest();
     }
 
 

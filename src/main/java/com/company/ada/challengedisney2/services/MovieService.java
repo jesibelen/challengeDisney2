@@ -1,11 +1,13 @@
 package com.company.ada.challengedisney2.services;
 
+import com.company.ada.challengedisney2.entities.CharacterEntity;
 import com.company.ada.challengedisney2.entities.MovieEntity;
 import com.company.ada.challengedisney2.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,14 +23,28 @@ public class MovieService {
         return movieRepo.findAll();
     }
 
+    /*
+        STRING (imagen), STRING (titulo), INTEGER (fecha creacion)
+        string / string
+        string / string
+        string /integer
 
-    public List<MovieEntity> listarPelis(){
-        List<MovieEntity> lista = new ArrayList<>();
-        for(MovieEntity movie: movieRepo.findAll()){
-           // MovieEntity movieAux= new MovieEntity(movie.getImage_url(),movie.getTitulo());
-          //  lista.add(movieAux);
+    */
+    public List<Map<String,String>> listarPelis(){
+        List<Map<String,String>> listMovie = new ArrayList<>();
+        for(MovieEntity peli: movieRepo.findAll()){
+            listMovie.add(Map.of("image_url",peli.getImage_url(),"title", peli.getTitulo(),"year",String.valueOf(peli.getYear())));
         }
-        return lista;
+        return listMovie;
+    }
+    public List<MovieEntity> listTest(){
+        List<MovieEntity> movies = new ArrayList<>();
+
+        for (MovieEntity peli: movieRepo.findAll()){
+            MovieEntity peliAux = new MovieEntity(peli.getImage_url(), peli.getTitulo(), peli.getYear());
+            movies.add(peliAux);
+        }
+        return movies;
     }
 
 

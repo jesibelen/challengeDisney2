@@ -30,6 +30,7 @@ public class MovieService {
         string /integer
 
     */
+    //OPCION A
     public List<Map<String,String>> listarPelis(){
         List<Map<String,String>> listMovie = new ArrayList<>();
         for(MovieEntity peli: movieRepo.findAll()){
@@ -37,6 +38,7 @@ public class MovieService {
         }
         return listMovie;
     }
+    //No funca OPCION B :-(
     public List<MovieEntity> listTest(){
         List<MovieEntity> movies = new ArrayList<>();
 

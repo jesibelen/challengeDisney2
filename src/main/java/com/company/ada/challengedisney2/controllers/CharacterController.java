@@ -37,8 +37,8 @@ public class CharacterController {
         characterServ.guardarPersonaje(personaje);
     }
 
-    @DeleteMapping("/delate/{id}")
-    private void borrar(@PathVariable Integer id){
+    @DeleteMapping("/borrar/{id}")
+    private void delate(@PathVariable Integer id){
         characterServ.borrarPersonaje(id);
     }
 

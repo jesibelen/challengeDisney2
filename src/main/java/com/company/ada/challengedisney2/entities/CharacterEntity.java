@@ -1,8 +1,5 @@
 package com.company.ada.challengedisney2.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,15 +8,17 @@ import java.util.List;
 public class CharacterEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idcharacter;
+    @Column(nullable = false)
     private String image_url;
     private String name;
     private Integer age;
     private Integer weight;
     private String story;
-    //@JsonManagedReference
-    //@JsonIgnore
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "characters_x_movies", joinColumns = @JoinColumn(name = "idcharacter"), inverseJoinColumns = @JoinColumn(name = "idmovie"))
+    @JoinTable(name = "characters_x_movies",
+            joinColumns = @JoinColumn(name = "idcharacter"),
+            inverseJoinColumns = @JoinColumn(name = "idmovie"))
     private List<MovieEntity> movies;
 
 
@@ -37,13 +36,12 @@ public class CharacterEntity {
         this.movies = movies;
     }
 
-    public CharacterEntity(String image_url, String name, Integer age, Integer weight, String story, List<MovieEntity> movies) {
+    public CharacterEntity(String image_url, String name, Integer age, Integer weight, String story) {
         this.image_url = image_url;
         this.name = name;
         this.age = age;
         this.weight = weight;
         this.story = story;
-        this.movies = movies;
     }
 
     public Integer getIdcharacter() {

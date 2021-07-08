@@ -22,12 +22,12 @@ public class MovieController {
     }
 
     @GetMapping
+    private List<Map<String, String>> listFilms(){return movieService.listarPelis();}
+
+    @GetMapping("/complete")
     private List<MovieEntity> listAllMovie(){
         return movieService.listarTodosPelis();
     }
-
-    @GetMapping("/lista")
-    private List<Map<String, String>> listFilms(){return movieService.listarPelis();}
 
     @GetMapping("/test")
     private List<MovieEntity> listTest(){

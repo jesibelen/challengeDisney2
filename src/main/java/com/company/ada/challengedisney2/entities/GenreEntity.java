@@ -1,5 +1,7 @@
 package com.company.ada.challengedisney2.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class GenreEntity {
     private String nombre;
     private String image_url;
 
+    @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable( name = "genres_x_movies",
             joinColumns = @JoinColumn(name = "idgenre"),

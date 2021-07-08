@@ -9,17 +9,15 @@ import java.util.List;
 
 @Entity
 @Table(name = "movies")
-
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class MovieEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer idmovie;
+    @Column(nullable = false)
     private String image_url;
     private String titulo;
     private Integer year;
     private Integer score;
-
     @JsonBackReference
     @ManyToMany(mappedBy = "movies", fetch = FetchType.LAZY)
     private List<CharacterEntity> characters;
